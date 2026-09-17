@@ -1,4 +1,4 @@
-\# Behind the Project: How I Built This
+# Behind the Project: How I Built This
 
 
 
@@ -10,7 +10,7 @@ Because of my interest in analytics, credit risk seemed like a good place to sta
 
 
 
-> \*\*Can I use SQL to understand which borrowers are more likely to default, where risk is concentrated in a loan portfolio, and how a lender might use that information when making lending decisions?\*\*
+> **Can I use SQL to understand which borrowers are more likely to default, where risk is concentrated in a loan portfolio, and how a lender might use that information when making lending decisions?\*\*
 
 
 
@@ -18,7 +18,7 @@ What started as a SQL practice project eventually became much more about underst
 
 
 
-\### Starting with the Data
+### Starting with the Data
 
 
 
@@ -50,11 +50,11 @@ It was a useful reminder that a query can be perfectly written and still produce
 
 
 
-\---
+---
 
 
 
-\### Cleaning Wasn't Just About Removing NULLs
+### Cleaning Wasn't Just About Removing NULLs
 
 
 
@@ -66,11 +66,11 @@ One of the first things I found was borrower ages such as:
 
 
 
-\- 123
+- 123
 
-\- 124
+- 124
 
-\- 144
+- 144
 
 
 
@@ -82,11 +82,11 @@ I corrected them to:
 
 
 
-\- 23
+- 23
 
-\- 24
+- 24
 
-\- 44
+- 44
 
 
 
@@ -110,7 +110,7 @@ That led to another lesson:
 
 
 
-> \*\*An outlier is not automatically an error.\*\*
+> **An outlier is not automatically an error.\*\*
 
 
 
@@ -118,11 +118,11 @@ Sometimes the correct decision is to investigate, isolate, or document a value r
 
 
 
-\---
+---
 
 
 
-\### Turning Raw Columns into Risk Features
+### Turning Raw Columns into Risk Features
 
 
 
@@ -138,21 +138,21 @@ For analysis, I wanted these variables to be easier to interpret, so I created c
 
 
 
-\- Age bands
+- Age bands
 
-\- Income bands
+- Income bands
 
-\- Employment-length bands
+- Employment-length bands
 
-\- Loan-amount bands
+- Loan-amount bands
 
-\- Affordability bands
+- Affordability bands
 
-\- Credit-history bands
+- Credit-history bands
 
-\- Interest-rate bands
+- Interest-rate bands
 
-\- Numeric loan-grade scores
+- Numeric loan-grade scores
 
 
 
@@ -180,11 +180,11 @@ The categories need to be interpretable enough that someone looking at the final
 
 
 
-\---
+---
 
 
 
-\### Understanding Default Risk
+### Understanding Default Risk
 
 
 
@@ -204,7 +204,7 @@ My first approach counted defaulted loans by age group.
 
 
 
-But that does \*\*not\*\* necessarily tell you which age group is more likely to default.
+But that does **not** necessarily tell you which age group is more likely to default.
 
 
 
@@ -212,13 +212,13 @@ For example:
 
 
 
-\- Group A could have 100 defaults out of 1,000 loans.
+- Group A could have 100 defaults out of 1,000 loans.
 
-\- Group B could have 50 defaults out of 100 loans.
+- Group B could have 50 defaults out of 100 loans.
 
 
 
-Group A has more defaults, but Group B has a much higher \*\*default rate\*\*.
+Group A has more defaults, but Group B has a much higher **default rate**.
 
 
 
@@ -230,17 +230,17 @@ Instead of focusing only on counts, I started comparing:
 
 
 
-\- Total loans
+- Total loans
 
-\- Defaulted loans
+- Defaulted loans
 
-\- Default rate
+- Default rate
 
-\- Portfolio share
+- Portfolio share
 
-\- Total loan exposure
+- Total loan exposure
 
-\- Defaulted exposure
+- Defaulted exposure
 
 
 
@@ -256,11 +256,11 @@ From a portfolio-management perspective, both matter for different reasons.
 
 
 
-\---
+---
 
 
 
-\### From Demographics to Portfolio Risk
+### From Demographics to Portfolio Risk
 
 
 
@@ -268,19 +268,19 @@ I then analyzed default behavior across several borrower characteristics:
 
 
 
-\- Age
+- Age
 
-\- Income
+- Income
 
-\- Employment history
+- Employment history
 
-\- Home ownership
+- Home ownership
 
-\- Credit history
+- Credit history
 
-\- Previous default history
+- Previous default history
 
-\- Affordability burden
+- Affordability burden
 
 
 
@@ -300,15 +300,15 @@ That made `loan\_percent\_income` and the affordability bands particularly inter
 
 
 
-It helped move the project away from simply describing borrowers and toward thinking about \*\*repayment capacity\*\*.
+It helped move the project away from simply describing borrowers and toward thinking about **repayment capacity**.
 
 
 
-\---
+---
 
 
 
-\### Simulating Underwriting Decisions
+### Simulating Underwriting Decisions
 
 
 
@@ -320,11 +320,11 @@ I created a simple underwriting simulation that classified loans into:
 
 
 
-\- \*\*Approve\*\*
+- **Approve**
 
-\- \*\*Manual Review\*\*
+- **Manual Review**
 
-\- \*\*Reject\*\*
+- **Reject**
 
 
 
@@ -332,17 +332,17 @@ The rules considered factors such as:
 
 
 
-\- Severe affordability burden
+- Severe affordability burden
 
-\- Weak loan grades
+- Weak loan grades
 
-\- Previous defaults
+- Previous defaults
 
-\- Thin credit history
+- Thin credit history
 
-\- Short employment history
+- Short employment history
 
-\- Combinations of multiple risk factors
+- Combinations of multiple risk factors
 
 
 
@@ -350,19 +350,19 @@ I then created three hypothetical underwriting strategies:
 
 
 
-\*\*Lenient Policy\*\*  
+**Lenient Policy**  
 
 Maintains more loan volume but only rejects the clearest high-risk cases.
 
 
 
-\*\*Balanced Policy\*\*  
+**Balanced Policy**  
 
 Uses a combination of rejection and manual review to reduce risk while preserving lending opportunities.
 
 
 
-\*\*Strict Policy\*\*  
+**Strict Policy**  
 
 Applies tighter criteria and removes more high-risk exposure, but at the cost of rejecting more potential borrowers.
 
@@ -376,7 +376,7 @@ The real question became:
 
 
 
-> \*\*How much risk can we reduce, and what amount of business volume do we give up to achieve that reduction?\*\*
+> **How much risk can we reduce, and what amount of business volume do we give up to achieve that reduction?**
 
 
 
@@ -384,15 +384,15 @@ That trade-off made the project feel much closer to an actual business analytics
 
 
 
-\---
+---
 
 
 
-\## How I Used AI During the Project
+## How I Used AI During the Project
 
 
 
-AI was useful throughout this project, but mostly as a \*\*learning and reasoning partner rather than a replacement for the analysis\*\*.
+AI was useful throughout this project, but mostly as a **learning and reasoning partner rather than a replacement for the analysis**.
 
 
 
@@ -404,21 +404,20 @@ For example, AI helped me work through:
 
 
 
-\- Why `BEGIN`, `COMMIT`, and `ROLLBACK` matter when updating a database
+- Why `BEGIN`, `COMMIT`, and `ROLLBACK` matter when updating a database
 
-\- How PostgreSQL data types affect calculations
+- How PostgreSQL data types affect calculations
 
-\- The difference between default count and default rate
+- The difference between default count and default rate
 
-\- Ways to select reasonable feature-engineering intervals
+- Ways to select reasonable feature-engineering intervals
+- How affordability can be interpreted in a credit-risk context
 
-\- How affordability can be interpreted in a credit-risk context
+- How default exposure differs from default probability
 
-\- How default exposure differs from default probability
+- How an underwriting policy simulation could be structured
 
-\- How an underwriting policy simulation could be structured
-
-\- How concepts such as Probability of Default, Exposure at Default, and Loss Given Default could extend the project later
+- How concepts such as Probability of Default, Exposure at Default, and Loss Given Default could extend the project later
 
 
 
@@ -438,11 +437,11 @@ A suggested threshold, cleaning rule, or underwriting condition is not automatic
 
 
 
-\---
+---
 
 
 
-\## What I Learned
+## What I Learned
 
 
 
@@ -454,19 +453,19 @@ The harder questions were things like:
 
 
 
-\- Is this value actually an error?
+- Is this value actually an error?
 
-\- Should I remove this outlier or preserve it?
+- Should I remove this outlier or preserve it?
 
-\- What denominator should I use for this KPI?
+- What denominator should I use for this KPI?
 
-\- Are my feature bands meaningful?
+- Are my feature bands meaningful?
 
-\- Does a high default rate actually represent significant portfolio risk?
+- Does a high default rate actually represent significant portfolio risk?
 
-\- Is the underwriting rule reducing risk, or simply rejecting a large portion of the portfolio?
+- Is the underwriting rule reducing risk, or simply rejecting a large portion of the portfolio?
 
-\- Can I explain why I made this assumption?
+- Can I explain why I made this assumption?
 
 
 
